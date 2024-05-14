@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"> 
+
+<h:head></h:head> 
+<body> 
+<f:view>
+		<div
+			style="background-color: lightgrey; border-style: groove; align-content: center; text-align: center; display: inline-block;">
+			<h1 style="color: DarkRed;">Store System</h1>
+			<h:form>
+				<h:panelGrid columns="2">
+						Name: <h:inputText value="#{storeBean.product.name}" />
+						Stock: <h:inputText value="#{storeBean.product.stock}" />
+						Price: <h:inputText value="#{storeBean.product.price}" />
+						
+						
+					<h:commandButton action="#{storeBean.saveProduct()}"
+						value="Save" style="align-content: center;"
+						rendered="#{storeBean.product.name==null}" />
+					<h:commandButton action="#{storeBean.updateProduct()}"
+						value="Update" style="align-content: center;"
+						rendered="#{storeBean.product.name!=null}" />
+				</h:panelGrid>
+
+				<p:dataTable value="#{storeBean.listProduct}" var="cls">
+					<f:facet name="header">Products</f:facet>
+					<p:column>
+						<f:facet name="header">Select | </f:facet>
+						<h:commandLink value="Select">
+							<f:setPropertyActionListener value="#{cls}"
+								target="#{storeBean.product}"></f:setPropertyActionListener>
+						</h:commandLink>
+					</p:column>
+					<p:column>
+						<f:facet name="header">Delete | </f:facet>
+						<h:commandLink action="#{storeBean.deleteProduct()}"
+							value="Delete"> <f:setPropertyActionListener value="#{cls}" target="#{storeBean.product}"></f:setPropertyActionListener> </h:commandLink>
+					</p:column>
+					<p:column>
+						<f:facet name="header">Name | </f:facet>
+						<h:outputText value="#{cls.name}" />
+					</p:column>
+					<p:column>
+						<f:facet name="header">Stock | </f:facet>
+						<h:outputText value="#{cls.stock}" />
+					</p:column>
+					<p:column>
+						<f:facet name="header">Price</f:facet>
+						<h:outputText value="#{cls.price}" />
+					</p:column>
+					
+				</p:dataTable>
+
+			</h:form>
+		</div>
+	</f:view>
+</body> 
+</html>
