@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head></h:head>
+<body>
+	<f:view>
+		<h:form>
+			<h:panelGrid columns="2">
+						Name: <h:inputText value="#{studentBean.student.name}" />
+						Surname: <h:inputText value="#{studentBean.student.surname}" />
+						Age: <h:inputText value="#{studentBean.student.age}" />
+				<h:commandButton action="#{studentBean.save()}" value="Save" />
+			</h:panelGrid>
+			<h:dataTable value="#{studentBean.studentList}" var="cls">
+				<f:facet name="header">List of Student</f:facet>
+				<h:column>
+					<f:facet name="header">Name</f:facet>
+					<h:outputText value="#{cls.name}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Surname</f:facet>
+					<h:outputText value="#{cls.surname}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Age</f:facet>
+					<h:outputText value="#{cls.age}" />
+				</h:column>
+			</h:dataTable>
+		</h:form>
+	</f:view>
+</body>
+</html>
