@@ -1,0 +1,111 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:t="http://myfaces.apache.org/tomahawk"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <style>
+        .centered-form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .centered-form .form-grid {
+            display: inline-block;
+            text-align: left;
+        }
+        .centered-form .form-grid td {
+            padding: 5px;
+        }
+        .centered-form h1 {
+            text-align: center;
+        }
+    </style>
+</h:head>
+<body>
+    <f:view>
+        <div class="centered-form" style="background-color: lightgrey; border-style: groove;">
+            <h1 style="color: DarkRed;">Population Sign Up System</h1>
+            <h:form>
+                <h:panelGrid columns="2" styleClass="form-grid">
+                    <h:outputLabel for="name" value="Name:" />
+                    <h:inputText id="name" value="#{registrationBean.person.name}" />
+                    
+                    <h:outputLabel for="surname" value="Surname:" />
+                    <h:inputText id="surname" value="#{registrationBean.person.surname}" />
+                    
+                    <h:outputLabel for="gender" value="Gender:" />
+                    <h:selectOneRadio id="gender" value="#{registrationBean.person.gender}">
+                        <f:selectItem itemValue="Male" itemLabel="Male" />
+                        <f:selectItem itemValue="Female" itemLabel="Female" />
+                    </h:selectOneRadio>
+                    
+                    <h:outputLabel for="birthday" value="Birthday (Format 12/5/2024):" />
+                    <h:inputText id="birthday" value="#{registrationBean.person.birthday}" />
+                    
+                    <h:outputLabel for="birth_place_country" value="Birth Place (Country):" />
+                    <h:selectOneMenu id="birth_place_country" value="#{registrationBean.person.birth_place_country}">
+                        <f:selectItem itemValue="Ankara" itemLabel="Ankara" />
+                        <f:selectItem itemValue="Istanbul" itemLabel="Istanbul" />
+                        <f:selectItem itemValue="Izmir" itemLabel="Izmir" />
+                        <f:selectItem itemValue="Others" itemLabel="Others" />
+                    </h:selectOneMenu>
+                    
+                    <h:outputLabel for="birth_place_city" value="Birth Place (City):" />
+                    <h:inputText id="birth_place_city" value="#{registrationBean.person.birth_place_city}" />
+                    
+                    <h:commandButton action="#{registrationBean.savePerson()}" value="Save"
+                                     style="align-content: center;" rendered="#{registrationBean.person.name==null}" />
+                    <h:commandButton action="#{registrationBean.updatePerson()}" value="Update"
+                                     style="align-content: center;" rendered="#{registrationBean.person.name!=null}" />
+                </h:panelGrid>
+
+                <p:dataTable value="#{registrationBean.personList}" var="cls">
+                    <f:facet name="header">People</f:facet>
+                    <p:column>
+                        <f:facet name="header">Select | </f:facet>
+                        <h:commandLink value="Select">
+                            <f:setPropertyActionListener value="#{cls}"
+                                                         target="#{registrationBean.person}"></f:setPropertyActionListener>
+                        </h:commandLink>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">Delete | </f:facet>
+                        <h:commandLink action="#{registrationBean.deletePerson()}"
+                                       value="Delete">
+                            <f:setPropertyActionListener value="#{cls}" target="#{registrationBean.person}"></f:setPropertyActionListener>
+                        </h:commandLink>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">Name | </f:facet>
+                        <h:outputText value="#{cls.name}" />
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">Surname | </f:facet>
+                        <h:outputText value="#{cls.surname}" />
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">Gender | </f:facet>
+                        <h:outputText value="#{cls.gender}" />
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">Birthday | </f:facet>
+                        <h:outputText value="#{cls.birthday}" />
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">Birth Place (Country) | </f:facet>
+                        <h:outputText value="#{cls.birth_place_country}" />
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">Birth Place (City)</f:facet>
+                        <h:outputText value="#{cls.birth_place_city}" />
+                    </p:column>
+                </p:dataTable>
+            </h:form>
+        </div>
+    </f:view>
+</body>
+</html>
