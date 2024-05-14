@@ -1,0 +1,20 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head></h:head>
+<body>
+	<!-- it starts jsf life cycle f:view tag -->
+	<f:view>
+		<h:form>
+			<h:panelGrid columns="2"> <!-- Add CSS to align vertically of form elements! -->
+						Username: <h:inputText value="#{demoBean.demo.username}"/>
+						Password: <h:inputText value="#{demoBean.demo.password}"/>
+				<h:commandButton action="#{demoBean.save()}" value="Save" />
+			</h:panelGrid>
+		</h:form>
+	</f:view>
+</body>
+</html>
