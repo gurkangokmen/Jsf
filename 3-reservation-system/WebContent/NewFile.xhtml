@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<h:head></h:head> 
+<body> 
+<f:view>
+		<h:form>
+			<h:panelGrid columns="2">
+						Name: <h:inputText
+					value="#{reservationBean.reservation.user.name}" />
+						Surname: <h:inputText
+					value="#{reservationBean.reservation.user.surname}" />
+						Age: <h:inputText value="#{reservationBean.reservation.user.age}" />
+						Gender: <h:selectOneRadio value="#{reservationBean.reservation.user.gender}">
+					<f:selectItem itemValue="Male" itemLabel="Male" />
+					<f:selectItem itemValue="Female" itemLabel="Female" />
+				</h:selectOneRadio>
+						
+						Hotel: <h:selectOneMenu
+					value="#{reservationBean.reservation.hotel.name}">
+					<f:selectItem itemValue="Rixos" itemLabel="Rixos" />
+					<f:selectItem itemValue="Hilton" itemLabel="Hilton" />
+					<f:selectItem itemValue="Swiss" itemLabel="Swiss" />
+				</h:selectOneMenu>
+						
+					Room:<h:selectOneRadio
+					value="#{reservationBean.reservation.room.type}">
+					<f:selectItem itemValue="1" itemLabel="1" />
+					<f:selectItem itemValue="2" itemLabel="2" />
+					<f:selectItem itemValue="D" itemLabel="D" />
+				</h:selectOneRadio>
+						Start Date: <h:inputText value="#{reservationBean.reservation.start_datetime}" />
+						End Date: <h:inputText value="#{reservationBean.reservation.end_datetime}" />
+				<h:commandButton action="#{reservationBean.save()}" value="Save" />
+			</h:panelGrid>
+
+			<h:dataTable value="#{reservationBean.reservations}" var="cls">
+				<f:facet name="header">Reservations</f:facet>
+				<h:column>
+					<f:facet name="header">Name</f:facet>
+					<h:outputText value="#{cls.user.name}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Surname</f:facet>
+					<h:outputText value="#{cls.user.surname}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Age</f:facet>
+					<h:outputText value="#{cls.user.age}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Gender</f:facet>
+					<h:outputText value="#{cls.user.gender}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">hotel</f:facet>
+					<h:outputText value="#{cls.hotel.name}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">room</f:facet>
+					<h:outputText value="#{cls.room.type}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">start date</f:facet>
+					<h:outputText value="#{cls.start_datetime}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">end date</f:facet>
+					<h:outputText value="#{cls.end_datetime}" />
+				</h:column>
+			</h:dataTable>
+
+		</h:form>
+	</f:view>
+</body> 
+</html>
