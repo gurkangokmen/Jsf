@@ -5,4 +5,4 @@
 
 2- Go to Help → Eclipse Marketplace
 
-3- Download Jboss Tools from Eclipse Marketplace (Version: 4.26.0.Final) & & Install it
+3- Download Jboss Tools from Eclipse Marketplace (Version: 4.16.0.Final) & & Install it
